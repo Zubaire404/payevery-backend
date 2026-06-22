@@ -11,7 +11,7 @@ from google import genai
 from database import SessionLocal, User, VirtualCard, Transaction
 
 # ২. নতুন নিয়মে Gemini Client সেটআপ (আপনার API Key এখানে দিন)
-GEMINI_API_KEY = "AQ.Ab8RN6IIwRnYsdzcGJ39NjZcerTzjJn_etHK_G5F1A_ElezIAw"
+GEMINI_API_KEY = "YOUR_API_KEY_HERE"
 client = genai.Client(api_key=GEMINI_API_KEY)
 
 app = FastAPI(title="PayEvery Smart API")
