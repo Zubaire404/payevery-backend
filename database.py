@@ -1,17 +1,14 @@
-from sqlalchemy import create_engine, Column, Integer, String, Float, ForeignKey
+from sqlalchemy import create_engine, Column, Integer, String, Float, ForeignKey, Date
 from sqlalchemy.orm import declarative_base, sessionmaker
+import datetime
 
-# ১. ডাটাবেসের লোকেশন নির্ধারণ (এটি প্রজেক্ট ফোল্ডারে payevery.db নামে সেভ হবে)
 SQLALCHEMY_DATABASE_URL = "sqlite:///./payevery.db"
 
-# ২. ইঞ্জিন তৈরি (check_same_thread=False দেওয়া হয়েছে যাতে FastAPI-তে ক্র্যাশ না করে)
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
-
-# ৩. টেবিল ডিজাইন (ORM ক্লাসের মাধ্যমে)
 
 class User(Base):
     __tablename__ = "users"
@@ -25,17 +22,17 @@ class VirtualCard(Base):
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"))
     card_number = Column(String, unique=True, index=True)
-    status = Column(String, default="ACTIVE")  # স্ট্যাটাস হবে ACTIVE বা DESTROYED
+    status = Column(String, default="ACTIVE")
 
 class Transaction(Base):
     __tablename__ = "transactions"
     id = Column(Integer, primary_key=True, index=True)
     user_id = Column(Integer, ForeignKey("users.id"))
     amount = Column(Float)
+    amount_usd = Column(Float, default=0.0) # 🔴 NEW: লিমিট হিসেবের জন্য ডলার অ্যামাউন্ট
     merchant = Column(String)
     status = Column(String, default="SUCCESS")
+    date = Column(Date, default=datetime.date.today) # 🔴 NEW: প্রতিদিনের হিসাব রাখার জন্য তারিখ
 
-# ৪. কোড রান করার সাথে সাথে ডাটাবেস ও টেবিলগুলো তৈরি করার কমান্ড
 Base.metadata.create_all(bind=engine)
-
-print("Database and Tables created successfully for PayEvery!")
+print("Database and Tables created successfully with Date tracking!")
