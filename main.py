@@ -1,3 +1,11 @@
+import os
+from dotenv import load_dotenv
+
+# .env ফাইল থেকে ডাটা লোড করবে
+load_dotenv()
+
+# সরাসরি স্ট্রিংয়ের বদলে os.getenv ব্যবহার করুন
+FIREWORKS_API_KEY = os.getenv("FIREWORKS_API_KEY")
 from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
@@ -12,7 +20,7 @@ from database import SessionLocal, User, VirtualCard, Transaction
 
 # 🔴 NEW: Fireworks AI Setup (Gemma মডেল ব্যবহার করার জন্য)
 # fireworks.ai ওয়েবসাইট থেকে API Key এনে এখানে বসাবেন
-FIREWORKS_API_KEY = "fw_Jk3Web2AwBhiK3ZxUeoKQt"
+FIREWORKS_API_KEY = ""
 client = openai.OpenAI(
     base_url="https://api.fireworks.ai/inference/v1",
     api_key=FIREWORKS_API_KEY,
