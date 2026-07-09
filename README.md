@@ -2,8 +2,8 @@
 
 > **Breaking the payment wall for 170 million people.**
 
-[![Demo](https://img.shields.io/badge/Live%20Demo-localhost%3A3000-blue?style=for-the-badge)](http://localhost:3000)
-[![Backend](https://img.shields.io/badge/API-FastAPI-green?style=for-the-badge)](http://localhost:8000/docs)
+[![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-PayEvery-blue?style=for-the-badge)](https://payevery-fontend.onrender.com)
+[![Backend API](https://img.shields.io/badge/API%20Docs-FastAPI-green?style=for-the-badge)](https://payevery-backend.onrender.com/docs)
 [![License](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)](#)
 
 ---
