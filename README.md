@@ -58,16 +58,33 @@ No bank account. No foreign card. Just your phone.
 
 ---
 
-## 🏗️ Tech Stack
+## 🤖 Powered by AMD Compute + Fireworks AI (Gemma Bonus Prize)
+
+PayEvery's AI-powered merchant safety engine runs on **AMD compute** via the **Fireworks AI** platform, using **Google's Gemma 4** model.
+
+| AI Component | Detail |
+|---|---|
+| **Model** | `accounts/fireworks/models/gemma-4-26b-a4b-it` |
+| **Platform** | Fireworks AI (AMD-powered inference) |
+| **Task** | Real-time merchant URL safety analysis |
+| **Output** | Trust Score (0–100) + verdict (SAFE/SCAM) + human-readable reason |
+| **Trigger** | Every payment attempt — no cached answers, always live inference |
+
+> This project qualifies for the **AMD Hackathon Gemma Bonus Prize** — using `gemma-4-26b-a4b-it`, one of the official qualifying models.
+
+---
+
+## 🏗️ Full Tech Stack
 
 | Layer | Technology |
 |---|---|
 | **Frontend** | Next.js 16, Tailwind CSS, TypeScript |
 | **Backend** | FastAPI (Python), SQLite, SQLAlchemy |
-| **AI** | Fireworks AI (Gemma-4-26B) for URL safety analysis |
+| **AI Model** | **Gemma-4-26b-a4b-it** via Fireworks AI (AMD compute) |
 | **Auth** | bcrypt password hashing, 2FA OTP |
 | **Exchange Rates** | open.er-api.com (real-time, 1-hour cache) |
 | **Extension** | Chrome Extension Manifest V3 |
+| **Deployment** | Render (backend + frontend, public URLs) |
 
 ---
 
@@ -173,8 +190,16 @@ payevery-extension/
 
 ## 🏆 Built For
 
-**AMD Hackathon 2025** — solving financial exclusion for Bangladesh's 170 million people through AI-powered fintech.
+**AMD Developer Hackathon ACT II — Track 3: Unicorn (Open Innovation)**  
+Solving financial exclusion for Bangladesh's 170 million people through AI-powered fintech, using AMD compute and the Gemma-4 model.
+
+### 🌐 Live Deployment
+- **Frontend:** https://payevery-fontend.onrender.com
+- **Backend API:** https://payevery-backend.onrender.com/docs
+
+### 🌍 Vision
+PayEvery is a blueprint for financial inclusion across South and Southeast Asia. Bangladesh is Phase 1. Pakistan, Nepal, Myanmar, and dozens of other markets face the exact same payment wall — 300M+ more potential users.
 
 ---
 
-*PayEvery — Pay every thing, any where.*
+*PayEvery — Powered by AMD. Built for the 95 million.*
