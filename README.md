@@ -116,7 +116,7 @@ npm install
 npm run dev
 ```
 
-Open **http://localhost:3000**
+Open **https://payevery-fontend.onrender.com**
 
 ### Demo Accounts
 | Username | PIN | Balance |
