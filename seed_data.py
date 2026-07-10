@@ -13,10 +13,10 @@ def seed_data():
 
         # Users ID
         users = [
-            User(name="Sohel", bkash_balance=500.0, nagad_balance=500.0),      
-            User(name="Rifat", bkash_balance=120.0, nagad_balance=300.0),    
-            User(name="Hasan", bkash_balance=100.0, nagad_balance=500.0),
-            User(name="Ratul", bkash_balance=600.0, nagad_balance=400.0)       
+            User(name="Sohel", bkash_balance=50000.0, nagad_balance=50000.0),      
+            User(name="Rifat", bkash_balance=50000.0, nagad_balance=50000.0),    
+            User(name="Hasan", bkash_balance=50000.0, nagad_balance=50000.0),
+            User(name="Ratul", bkash_balance=50000.0, nagad_balance=50000.0)       
         ]
 
         

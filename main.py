@@ -137,10 +137,10 @@ def signup(req: SignupRequest, db: Session = Depends(get_db)):
     db.add(User(
         name=req.name.strip(), username=uname, phone=req.phone.strip(),
         password_hash=hash_pw(req.password), pin_hash=hash_pw(req.pin),
-        bkash_balance=1000.0, nagad_balance=1000.0
+        bkash_balance=50000.0, nagad_balance=50000.0
     ))
     db.commit()
-    return {"success": True, "message": "Account created! You received 1000 BDT bKash + 1000 BDT Nagad."}
+    return {"success": True, "message": "Account created! You received 50000 BDT bKash + 50000 BDT Nagad."}
 
 @app.post("/api/auth/login-step1")
 def login_step1(req: LoginRequest, db: Session = Depends(get_db)):
