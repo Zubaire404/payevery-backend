@@ -121,9 +121,10 @@ Open **http://localhost:3000**
 ### Demo Accounts
 | Username | PIN | Balance |
 |---|---|---|
-| `sohel` | `1234` | ৳2000 |
-| `ratul` | `1234` | ৳2000 |
-| `rifat` | `1234` | ৳2000 |
+| `sohel` | `1234` | ৳100,000 |
+| `ratul` | `1234` | ৳100,000 |
+| `rifat` | `1234` | ৳100,000 |
+| `hasan` | `1234` | ৳100,000 |
 
 ---
 
@@ -173,7 +174,7 @@ payevery-extension/
 
 | Method | Endpoint | Description |
 |---|---|---|
-| `POST` | `/api/auth/signup` | Create account (+ ৳1000 bKash, ৳1000 Nagad) |
+| `POST` | `/api/auth/signup` | Create account (+ ৳50,000 bKash, ৳50,000 Nagad) |
 | `POST` | `/api/auth/login-step1` | Verify PIN → send OTP |
 | `POST` | `/api/auth/login-step2` | Verify OTP → login |
 | `GET` | `/api/check-url?url=` | AI trust score for a URL |
