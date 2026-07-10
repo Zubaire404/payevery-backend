@@ -9,6 +9,13 @@
 
 ---
 
+### 📦 Repositories
+*   **Backend API (This Repo):** https://github.com/Zubaire404/payevery-backend
+*   **Frontend Application:** https://github.com/Zubaire404/payevery-fontend
+*   **Chrome Extension:** https://github.com/Zubaire404/payevery-extension
+
+---
+
 ## 🎯 The Problem
 
 Bangladesh has **170 million people** but faces a critical international payment gap:
