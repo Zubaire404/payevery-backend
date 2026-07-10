@@ -585,3 +585,25 @@ def get_transactions(username: str, db: Session = Depends(get_db)):
     return [{"id": t.id, "merchant": t.merchant, "amount": t.amount, "currency": getattr(t,"currency","BDT"),
              "amount_usd": round(t.amount_usd, 4), "status": t.status, "date": str(t.date),
              "tx_type": getattr(t, "tx_type", "SINGLE")} for t in txns]
+
+# ── Admin: Refill All Users (except Sohel) ────────────────────────────────────
+@app.post("/api/admin/refill-all")
+def refill_all_users(db: Session = Depends(get_db)):
+    """Refill every user's bKash and Nagad balance to 50000 BDT each, except user 'sohel'."""
+    users = db.query(User).all()
+    refilled = []
+    skipped = []
+    for u in users:
+        if u.username == "sohel":
+            skipped.append(u.username)
+            continue
+        u.bkash_balance = 50000.0
+        u.nagad_balance = 50000.0
+        refilled.append(u.username)
+    db.commit()
+    return {
+        "success": True,
+        "refilled": refilled,
+        "skipped": skipped,
+        "message": f"Refilled {len(refilled)} users to ৳50000 bKash + ৳50000 Nagad each. Skipped: {', '.join(skipped) if skipped else 'none'}."
+    }
