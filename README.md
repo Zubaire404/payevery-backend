@@ -193,9 +193,10 @@ payevery-extension/
 **AMD Developer Hackathon ACT II — Track 3: Unicorn (Open Innovation)**  
 Solving financial exclusion for Bangladesh's 170 million people through AI-powered fintech, using AMD compute and the Gemma-4 model.
 
-### 🌐 Live Deployment
-- **Frontend:** https://payevery-fontend.onrender.com
-- **Backend API:** https://payevery-backend.onrender.com/docs
+### 🌐 Repositories & Deployment
+- **Frontend App:** https://payevery-fontend.onrender.com (Repo: [payevery-fontend](https://github.com/Zubaire404/payevery-fontend))
+- **Backend API:** https://payevery-backend.onrender.com/docs (Repo: [payevery-backend](https://github.com/Zubaire404/payevery-backend))
+- **Chrome Extension:** [payevery-extension](https://github.com/Zubaire404/payevery-extension)
 
 ### 🌍 Vision
 PayEvery is a blueprint for financial inclusion across South and Southeast Asia. Bangladesh is Phase 1. Pakistan, Nepal, Myanmar, and dozens of other markets face the exact same payment wall — 300M+ more potential users.
