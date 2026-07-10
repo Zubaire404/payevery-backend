@@ -240,14 +240,26 @@ def process_payment(req: PaymentRequest, db: Session = Depends(get_db)):
     required_bdt = round(req.amount * rates[cur], 2)
     amount_usd   = required_bdt / rates["USD"]
     domain = urlparse(req.target_url).netloc.lower()
-    is_trusted = any(td in domain for td in TRUSTED_HIGH_LIMIT)
-    daily_limit = 150.0 if is_trusted else 50.0
-    today = date.today()
-    spent = db.query(func.sum(Transaction.amount_usd)).filter(
-        Transaction.user_id == user.id, Transaction.date == today
-    ).scalar() or 0.0
-    if spent + amount_usd > daily_limit:
-        raise HTTPException(403, f"AML Alert: Daily limit ${daily_limit} exceeded! Spent today: ${round(spent,2)}")
+    is_trusted_whitelist = any(td in domain for td in TRUSTED_WHITELIST)
+
+    if is_trusted_whitelist:
+        if amount_usd > 150.0:
+            raise HTTPException(403, "Trusted site maximum limit per transaction is $150.00.")
+    else:
+        daily_limit = 50.0
+        today = date.today()
+        txs_today = db.query(Transaction).filter(
+            Transaction.user_id == user.id, Transaction.date == today
+        ).all()
+        
+        spent = 0.0
+        for tx in txs_today:
+            tx_domain = urlparse(tx.merchant).netloc.lower()
+            if not any(td in tx_domain for td in TRUSTED_WHITELIST):
+                spent += tx.amount_usd
+                
+        if spent + amount_usd > daily_limit:
+            raise HTTPException(403, f"AML Alert: Daily limit ${daily_limit} exceeded! Spent today: ${round(spent,2)}")
     if user.bkash_balance + user.nagad_balance < required_bdt:
         raise HTTPException(400, f"Insufficient funds. Need ৳{required_bdt}, have ৳{user.bkash_balance+user.nagad_balance}.")
     bkash_d = min(user.bkash_balance, required_bdt)
@@ -288,6 +300,30 @@ def create_pool(req: CreatePoolRequest, db: Session = Depends(get_db)):
     if cur not in rates:
         raise HTTPException(400, f"Currency '{cur}' not supported.")
     total_bdt = round(req.total_amount * rates[cur], 2)
+    amount_usd = total_bdt / rates["USD"]
+
+    domain = urlparse(req.target_url).netloc.lower()
+    is_trusted_whitelist = any(td in domain for td in TRUSTED_WHITELIST)
+
+    if is_trusted_whitelist:
+        if amount_usd > 150.0:
+            raise HTTPException(403, "Trusted site maximum limit per transaction is $150.00.")
+    else:
+        daily_limit = 50.0
+        today = date.today()
+        txs_today = db.query(Transaction).filter(
+            Transaction.user_id == leader.id, Transaction.date == today
+        ).all()
+        
+        spent = 0.0
+        for tx in txs_today:
+            tx_domain = urlparse(tx.merchant).netloc.lower()
+            if not any(td in tx_domain for td in TRUSTED_WHITELIST):
+                spent += tx.amount_usd
+                
+        if spent + amount_usd > daily_limit:
+            raise HTTPException(403, f"AML Alert: Daily limit ${daily_limit} exceeded! Spent today: ${round(spent,2)}")
+
     # Generate unique pool code
     code = gen_pool_code()
     while db.query(SquadPool).filter(SquadPool.pool_code == code).first():
