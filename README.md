@@ -4,6 +4,7 @@
 
 [![Live Demo](https://img.shields.io/badge/🚀%20Live%20Demo-PayEvery-blue?style=for-the-badge)](https://payevery-fontend.onrender.com)
 [![Backend API](https://img.shields.io/badge/API%20Docs-FastAPI-green?style=for-the-badge)](https://payevery-backend.onrender.com/docs)
+[![Demo Video](https://img.shields.io/badge/🎬%20Watch%20Demo%20Video-OneDrive-red?style=for-the-badge)](https://1drv.ms/v/c/31d7390ef0504f11/IQBSWyXTqqmTSIVAC0va5F1sAe3iwJziCZx60ueBzsf0aEQ?e=vueR33)
 [![License](https://img.shields.io/badge/License-MIT-purple?style=for-the-badge)](#)
 
 ---
