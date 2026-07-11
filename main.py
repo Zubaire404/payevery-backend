@@ -612,9 +612,18 @@ def refill_all_users(db: Session = Depends(get_db)):
         if u.username == "sohel":
             skipped.append(u.username)
             continue
-        u.bkash_balance = 50000.0
-        u.nagad_balance = 50000.0
-        refilled.append(u.username)
+        elif u.username == "rifat":
+            u.bkash_balance = 10000.0
+            u.nagad_balance = 5000.0
+            refilled.append(f"rifat (15K)")
+        elif u.username == "ratul":
+            u.bkash_balance = 9000.0
+            u.nagad_balance = 11000.0
+            refilled.append(f"ratul (20K)")
+        else:
+            u.bkash_balance = 50000.0
+            u.nagad_balance = 50000.0
+            refilled.append(u.username)
     db.commit()
     return {
         "success": True,

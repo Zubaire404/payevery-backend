@@ -133,8 +133,8 @@ Open **https://payevery-fontend.onrender.com**
 | Username | PIN | Balance |
 |---|---|---|
 | `sohel` | `1234` | ৳100,000 |
-| `ratul` | `1234` | ৳100,000 |
-| `rifat` | `1234` | ৳100,000 |
+| `ratul` | `1234` | ৳20,000 |
+| `rifat` | `1234` | ৳15,000 |
 | `hasan` | `1234` | ৳100,000 |
 
 ---
