@@ -610,8 +610,9 @@ def refill_all_users(db: Session = Depends(get_db)):
     skipped = []
     for u in users:
         if u.username == "sohel":
-            skipped.append(u.username)
-            continue
+            u.bkash_balance = 50000.0
+            u.nagad_balance = 50000.0
+            refilled.append("sohel")
         elif u.username == "rifat":
             u.bkash_balance = 10000.0
             u.nagad_balance = 5000.0
