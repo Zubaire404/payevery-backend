@@ -192,11 +192,21 @@ def check_url_safety(url: str) -> dict:
             f'verdict must be "SAFE" or "SCAM". score 0-100 (100=completely safe, 0=definite scam).\n'
             f'URL: \'{url}\' ->'
         )
-        resp = client.chat.completions.create(
-            model="accounts/fireworks/models/gemma-4-26b-a4b-it",
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.0
-        )
+        
+        try:
+            resp = client.chat.completions.create(
+                model="accounts/fireworks/models/gemma-4-26b-a4b-it",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.0
+            )
+        except Exception as e_primary:
+            print(f"Primary dedicated model unavailable ({e_primary}). Using free serverless fallback...")
+            resp = client.chat.completions.create(
+                model="accounts/fireworks/models/llama-v3p1-8b-instruct",
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.0
+            )
+            
         raw = resp.choices[0].message.content.strip()
         s, e = raw.find('{'), raw.rfind('}') + 1
         if s >= 0 and e > s:
