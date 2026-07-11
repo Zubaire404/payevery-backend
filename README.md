@@ -80,6 +80,9 @@ PayEvery's AI-powered merchant safety engine runs on **AMD compute** via the **F
 
 > This project qualifies for the **AMD Hackathon Gemma Bonus Prize** — using `gemma-4-26b-a4b-it`, one of the official qualifying models.
 
+**High Availability Architecture:**
+To ensure zero downtime, our API implements an automatic failover mechanism. If the dedicated Gemma-4 instance is offline or unreachable, the system instantly falls back to a serverless model (DeepSeek-V4-Flash) via the Fireworks API to process the security check without interrupting the user's checkout flow.
+
 ---
 
 ## 🏗️ Full Tech Stack
