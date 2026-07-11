@@ -114,6 +114,7 @@ class CreatePoolRequest(BaseModel):
 class ContributePoolRequest(BaseModel):
     pool_code: str
     contributor_username: str
+    amount: float
     pin: str
     otp: str
 
@@ -417,10 +418,14 @@ def contribute_to_pool(req: ContributePoolRequest, db: Session = Depends(get_db)
     remaining_bdt = round(pool.total_bdt - pool.collected_bdt, 2)
     if remaining_bdt <= 0:
         raise HTTPException(400, "Pool is already fully funded!")
-    # Contributor pays their share (up to remaining)
-    share_bdt = min(remaining_bdt, user.bkash_balance + user.nagad_balance)
+    # Contributor pays their specific amount
+    share_bdt = round(req.amount, 2)
     if share_bdt <= 0:
-        raise HTTPException(400, "Insufficient funds to contribute.")
+        raise HTTPException(400, "Amount must be greater than 0.")
+    if share_bdt > remaining_bdt:
+        raise HTTPException(400, f"Amount exceeds remaining pool balance (৳{remaining_bdt}).")
+    if share_bdt > (user.bkash_balance + user.nagad_balance):
+        raise HTTPException(400, "Insufficient wallet balance.")
     # Deduct from contributor
     bkash_d = min(user.bkash_balance, share_bdt)
     nagad_d  = share_bdt - bkash_d
