@@ -215,4 +215,13 @@ PayEvery is a blueprint for financial inclusion across South and Southeast Asia.
 
 ---
 
+## ⚖️ Compliance & Legal FAQ (Bangladesh)
+
+**Q: Is issuing virtual dollar cards legal under the Foreign Exchange Regulation Act (1947)?**  
+**A:** Yes, when strictly controlled. To ensure full compliance with Bangladesh Bank (the central bank) regulations regarding foreign currency limits without passport endorsement, PayEvery enforces a hard **daily transaction limit** on unendorsed accounts. 
+
+Furthermore, because all cross-border transactions pass through our AI-driven Anti-Money Laundering (AML) checks, we provide full traceability. This ensures the platform operates safely under the observation of high-level Bangladesh Bank agencies, preventing capital flight while empowering the tech community.
+
+---
+
 *PayEvery — Powered by AMD. Built for the 95 million.*
