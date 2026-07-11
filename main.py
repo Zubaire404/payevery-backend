@@ -202,7 +202,7 @@ def check_url_safety(url: str) -> dict:
         except Exception as e_primary:
             print(f"Primary dedicated model unavailable ({e_primary}). Using free serverless fallback...")
             resp = client.chat.completions.create(
-                model="accounts/fireworks/models/llama-v3p1-8b-instruct",
+                model="accounts/fireworks/models/deepseek-v4-flash",
                 messages=[{"role": "user", "content": prompt}],
                 temperature=0.0
             )
